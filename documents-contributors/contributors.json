@@ -1,0 +1,78 @@
+[
+  {
+    "name":"Marina Rustow",
+    "id":"rustow",
+    "count":17856
+  },
+  {
+    "name":"Alan Elbaum",
+    "id":"elbaum",
+    "count":9215
+  },
+  {
+    "name":"S. D. Goitein",
+    "id":"goitein",
+    "count":3072
+  },
+  {
+    "name":"Sarah Nisenson",
+    "id":"nisenson",
+    "count":2077
+  },
+  {
+    "name":"Moshe Gil",
+    "id":"gil",
+    "count":1620
+  },
+  {
+    "name":"Amir Ashur",
+    "id":"ashur",
+    "count":1341
+  },
+  {
+    "name":"Oded Zinger",
+    "id":"zinger",
+    "count":1333
+  },
+  {
+    "name":"Nurit Tsafrir",
+    "id":"tsafrir",
+    "count":512
+  },
+  {
+    "full_name":"Mordechai Akiva Friedman",
+    "name":"Mordechai Friedman",
+    "id":"friedman",
+    "count":496
+  },
+  {
+    "name":"Mark Cohen",
+    "id":"cohen",
+    "count":439
+  },
+  {
+    "name":"Catherine Beaumont",
+    "id":"beaumont",
+    "count":370
+  },
+  {
+    "name":"Emily Silkaitis",
+    "id":"silkaitis",
+    "count":210
+  },
+  {
+    "name":"Nomi Heger",
+    "id":"heger",
+    "count":196
+  },
+  {
+    "name":"Nadia Vidro",
+    "id":"vidro",
+    "count":189
+  },
+  {
+    "name":"Sumaiya Hamdani",
+    "id":"hamdani",
+    "count":118
+  }
+]

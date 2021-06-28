@@ -1,0 +1,93 @@
+body {
+    font-family: sans-serif;
+}
+
+.caption {
+    font-style: italic;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 10px;
+}
+
+.selection .documents rect {
+    opacity: 0.3;
+}
+
+.highlight {
+    opacity: 1;
+    fill: black;
+}
+
+.selection rect.highlight {
+    fill: #9e1f63;
+    opacity: 1;
+    /* stroke: yellow; */
+}
+
+#viz-container {
+    margin-left: 40px;
+}
+
+.color-legend {
+    position: fixed;
+    bottom: 20px;
+    right: 65px;
+    width: 250px;
+    background-color: white;
+    padding: 10px;
+}
+
+.color-legend text {
+    font-family: sans-serif;
+    font-size: 8;
+    color: black;
+}
+
+.color-legend text.label {
+    font-size: 8;
+}
+
+.color-legend text.title {
+    font-size: 10;
+}
+
+/* rotate detail/summary element for simple html-only side menu */
+
+.contributor-filter {
+    padding: 15px;
+    transform-origin: top left;
+    transform: rotate(-90deg);
+    position: fixed;
+    left: 0;
+    top: 60%;
+    background-color: white;
+    width: 350px;
+}
+
+.contributor-filter summary {
+    text-align: center;
+}
+
+.contributor-filter ul {
+    transform: rotate(90deg);
+    /* undo rotation */
+    list-style-type: none;
+    margin-left: 10px;
+    vertical-align: middle;
+    margin-right: 40px;
+}
+
+.contributor-filter li {
+    padding-bottom: 5px;
+}
+
+.contributor-filter li.selected {
+    text-decoration: underline;
+    text-decoration-color: #9e1f63;
+    text-decoration-thickness: 2px;
+}
+
+.contributor-filter ul .count {
+    color: gray;
+}
