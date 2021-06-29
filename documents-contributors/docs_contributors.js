@@ -1,11 +1,14 @@
 // NOTE: using fetch and parseRows because csv.parse does not
 // work with Content Security Policy — see https://github.com/d3/d3-dsv#content-security-policy
 
+const base_url = "https://princeton-cdh.github.io/pgp-dataviz/documents-contributors/";
+// change base url for local development if data changes
+
 const drawChart = async () => {
-    // TODO: will need to load data by absolute path so it will resolve when embedded
-    // e.g. from S&co map
+    // load data by absolute path so it will resolve when embedded
     //   rawcsv = await d3.text("https://princeton-cdh.github.io/literary-right-bank/data.csv");
-    var rawcsv = await d3.text("docs_attention_people.csv");
+    var rawcsv = await d3.text(base_url + "docs_attention_people.csv");
+    // var rawcsv = await d3.text("docs_attention_people.csv");
     // remove header row
     var content = rawcsv.substring(rawcsv.indexOf("\n") + 1)
     var data = d3.csvParseRows(content, function (d, i) {
@@ -18,38 +21,30 @@ const drawChart = async () => {
         };
     });
 
-
-
+    /* use container width to adjust layout */
     var containerWidth = document.getElementById("viz-container").offsetWidth;
-
     console.log("container width = " + document.getElementById("viz-container").offsetWidth);
 
     var width = 1000;
     // var width = containerWidth;
     var height = 900;
-    // var height = 2000;
-
 
     // build the chart
     const svg = d3.select('#viz-container')
         .append("svg")
-        .attr("viewBox", [0, 0, width, height]);
+        .attr("viewBox", [0, 0, containerWidth + 40, height]);
+        // .attr("viewBox", [0, 0, width, height]);
 
     // layout pgp documents in a grid pattern
     // color intensity based on the number of people who have worked on that document
-    const size = 4;  // 7 is a nice size...
+    const size = 7;  // 7 is a nice size...
     // const size = containerWidth / 50;
-    // const size = 40;
+    // const size = 40;   /* minimum touch size for mobile */
     const margin = 0.5;
-    const cols = 195;
-    // const cols = containerWidth / 42;
+    // determine # columns based on desired size and container width
+    const cols = Math.floor(containerWidth - 40 / (size + margin));
     // const cols = 23;
     console.log('size ' + size + ' cols ' + cols);
-
-    // when testing with smaller dataset
-    // const size = 7;
-    // const margin = 2;
-    // const cols = 100;
 
     const color = d3.schemeBlues[9];
 
@@ -95,17 +90,12 @@ const drawChart = async () => {
     legend_svg.append("text")
         .text("Number of contributors")
         .attr("class", "title")
-        .attr("x", 30)
+        .attr("x", 0)
         .attr("y", 45);
-
-
-
-
-
 
     // load list of top contributors
     // includes name, id, and count
-    var people = fetch("contributors.json")
+    var people = fetch(base_url + "contributors.json")
         .then(response => response.json())
         .then(response => contributorFilterMenu(response));
 

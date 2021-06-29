@@ -1,13 +1,28 @@
-body {
+.container {
     font-family: sans-serif;
+    position: relative;
+    width: 100%;
+    height: 700px;
 }
 
 .caption {
     font-style: italic;
-    text-align: center;
-    position: fixed;
-    width: 100%;
-    bottom: 10px;
+    margin-bottom: 0;
+    padding-left: 10px;
+    font-size: 10pt;
+    text-align: left;
+    /* position: fixed; */
+    position: absolute;
+    width: 66%;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+/* compensate for cdhweb styles */
+article.blogpost .container p {
+    margin-bottom: 0;
+}
+#maincontent .content .caption a {
+    font-size: 10pt;
 }
 
 .selection .documents rect {
@@ -26,43 +41,48 @@ body {
 }
 
 #viz-container {
-    margin-left: 40px;
+    /* make scrollable within container div */
+    /* margin-left: 40px; */  /* for contributor filter */
+    max-height: 100%;
+    overflow-y: scroll;
+    padding-bottom: 75px;
 }
 
 .color-legend {
-    position: fixed;
-    bottom: 20px;
-    right: 65px;
-    width: 250px;
+    position: absolute;
+    bottom: 0;
+    right: 5px;
+    width: 33%;
+    max-width: 200px;
     background-color: white;
     padding: 10px;
 }
 
 .color-legend text {
     font-family: sans-serif;
-    font-size: 8;
+    font-size: 8pt;
     color: black;
 }
 
-.color-legend text.label {
-    font-size: 8;
-}
-
 .color-legend text.title {
-    font-size: 10;
+    font-size: 10pt;
 }
 
 /* rotate detail/summary element for simple html-only side menu */
 
 .contributor-filter {
-    padding: 15px;
+    /* display fullscreen only? */
+    display: none;
+
+    padding: 0 15px;
     transform-origin: top left;
     transform: rotate(-90deg);
-    position: fixed;
+    /* position: fixed; */
+    position: absolute;
     left: 0;
-    top: 60%;
+    /* top: 60%;*/
+    bottom: 15%;
     background-color: white;
-    width: 350px;
 }
 
 .contributor-filter summary {
@@ -70,6 +90,7 @@ body {
 }
 
 .contributor-filter ul {
+    position: relative;
     transform: rotate(90deg);
     /* undo rotation */
     list-style-type: none;
@@ -90,4 +111,21 @@ body {
 
 .contributor-filter ul .count {
     color: gray;
+}
+
+/* adjust for mobile */
+@media (max-width: 735px) {
+    body {
+      font-size: 16px;
+    }
+    .container {
+        height: 450px;
+    }
+    .caption {
+        width: 100%;
+    }
+    .color-legend {
+        bottom: 65px;
+        width: 45%;
+    }
 }
