@@ -18,6 +18,10 @@
     background-color: white;
 }
 
+/* adjust for placement on cdh (default styles push below nav) */
+.blogpost #maincontent .container.fs {
+    top: -65px;
+}
 
 .caption {
     font-style: italic;
