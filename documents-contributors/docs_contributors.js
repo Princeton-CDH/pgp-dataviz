@@ -6,9 +6,7 @@ const base_url = "https://princeton-cdh.github.io/pgp-dataviz/documents-contribu
 
 const drawChart = async () => {
     // load data by absolute path so it will resolve when embedded
-    //   rawcsv = await d3.text("https://princeton-cdh.github.io/literary-right-bank/data.csv");
     var rawcsv = await d3.text(base_url + "docs_attention_people.csv");
-    // var rawcsv = await d3.text("docs_attention_people.csv");
     // remove header row
     var content = rawcsv.substring(rawcsv.indexOf("\n") + 1)
     var data = d3.csvParseRows(content, function (d, i) {
@@ -27,7 +25,7 @@ const drawChart = async () => {
 
     var width = 1000;
     // var width = containerWidth;
-    var height = 900;
+    var height = 1200;
 
     // build the chart
     const svg = d3.select('#viz-container')
@@ -38,12 +36,12 @@ const drawChart = async () => {
     // layout pgp documents in a grid pattern
     // color intensity based on the number of people who have worked on that document
     const size = 7;  // 7 is a nice size...
-    // const size = containerWidth / 50;
+    // const size = containerWidth / 100;
     // const size = 40;   /* minimum touch size for mobile */
     const margin = 0.5;
     // determine # columns based on desired size and container width
-    const cols = Math.floor(containerWidth - 40 / (size + margin));
-    // const cols = 23;
+    const cols = Math.floor(containerWidth / (size + (margin*2)));
+    // const cols = 90;
     console.log('size ' + size + ' cols ' + cols);
 
     const color = d3.schemeBlues[9];
@@ -138,6 +136,21 @@ const drawChart = async () => {
             .text(d => " (" + d.count.toLocaleString() + ")")
 
     }
+
+    function toggleFullscreen() {
+        let container = d3.select('.container');
+        let body = d3.select('body');
+        if (!container.classed('fs')) {
+            container.classed("fs", true);
+            body.classed("fs-open", true);
+        } else {
+            container.classed("fs", false);
+            body.classed("fs-open", false);
+        }
+
+    }
+    d3.select('#zoom-controls')
+        .on("click", toggleFullscreen);
 
 }
 
