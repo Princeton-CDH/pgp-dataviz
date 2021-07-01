@@ -55,8 +55,8 @@ article.blogpost .container p {
     position: absolute;
     top: 0;
     right: 0;
-    width: 75px;
-    height: 75px;
+    width: 40px;
+    height: 40px;
 }
 
 .fs #zoom-controls {
@@ -69,7 +69,7 @@ article.blogpost .container p {
     position: absolute;
     right: 0;
     text-align: right;
-    font-size: 25pt;
+    font-size: 22pt;
     color: gray;
     cursor: pointer;
 }
@@ -92,7 +92,8 @@ article.blogpost .container p {
     /* make scrollable within container div */
     max-height: 100%;
     overflow-y: scroll;
-    padding-bottom: 75px;
+    padding: 65px 0 75px;
+    margin: 0 auto;
 
     /* Hide scrollbar for IE, Edge and Firefox */
     -ms-overflow-style: none;  /* IE and Edge */
@@ -101,10 +102,6 @@ article.blogpost .container p {
 #viz-container::-webkit-scrollbar {
     /* Hide scrollbar for Chrome, Safari and Opera */
     display: none;
-}
-
-.fs #viz-container {
-    margin-left: 50px;  /* adjust for contributor filter */
 }
 
 .color-legend {
@@ -127,30 +124,22 @@ article.blogpost .container p {
     font-size: 10pt;
 }
 
-/* rotate detail/summary element for simple html-only side menu */
-
 .contributor-filter {
-    /* display on fullscreen only */
-    display: none;
-}
-
-/* display contributor in full-screen */
-.fs .contributor-filter {
     display: block;
-    padding: 0 150px;
-    transform-origin: top left;
-    transform: rotate(-90deg);
-    position: fixed;
+    padding: 5px 20px;
     position: absolute;
     left: 0;
-    bottom: 0;
+    top: 0;
     background-color: white;
-    width: 100vh; /* span full side; height since rotated */
+
+    border: 1px solid #efefef;
+}
+
+.fs .contributor-filter {
+    position: fixed;
 }
 
 .contributor-filter[open] {
-    height: 450px;  /* = width since rotated */
-    max-height: 75vw;
     z-index: 501;
 }
 
@@ -161,11 +150,10 @@ article.blogpost .container p {
 
 .contributor-filter ul {
     position: relative;
-    transform: rotate(90deg) translate(-50px,0px);
+    /* transform: rotate(90deg) translate(-50px,0px); */
     /* undo rotation */
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+    margin: 10px 0;
     vertical-align: middle;
 }
 
@@ -193,18 +181,15 @@ article.blogpost .container p {
     }
     .caption {
         width: 100%;
+        line-height: 1.5;
     }
     .color-legend {
-        bottom: 85px;
+        bottom: 105px;
         width: 45%;
     }
 
-    .contributor-filter ul {
-        transform: rotate(90deg);
-    }
-    /* adjust placement on mobile */
-    .contributor-filter[open] {
-        transform: rotate(-90deg) translate(-75vw, 0);
+    contributor-filter {
+        width: 88%;
     }
 }
 
