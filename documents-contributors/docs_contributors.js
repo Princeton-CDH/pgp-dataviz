@@ -19,30 +19,26 @@ const drawChart = async () => {
         };
     });
 
-    /* use container width to adjust layout */
+    /* use container width to determine layout */
     var containerWidth = document.getElementById("viz-container").offsetWidth;
-    console.log("container width = " + document.getElementById("viz-container").offsetWidth);
-
-    var width = 1000;
-    // var width = containerWidth;
-    var height = 1200;
-
-    // build the chart
-    const svg = d3.select('#viz-container')
-        .append("svg")
-        .attr("viewBox", [0, 0, containerWidth + 40, height]);
-        // .attr("viewBox", [0, 0, width, height]);
 
     // layout pgp documents in a grid pattern
     // color intensity based on the number of people who have worked on that document
-    const size = 7;  // 7 is a nice size...
-    // const size = containerWidth / 100;
+    const size = 7;
     // const size = 40;   /* minimum touch size for mobile */
     const margin = 0.5;
     // determine # columns based on desired size and container width
     const cols = Math.floor(containerWidth / (size + (margin*2)));
-    // const cols = 90;
-    console.log('size ' + size + ' cols ' + cols);
+
+    // calculate how large the grid will be
+    var outer_x = (cols) * (size + 2*margin) + margin + size;
+    var outer_y = Math.floor(data.length / cols) * (size + 2 * margin) + margin + size;
+
+    // build the chart
+    const svg = d3.select('#viz-container')
+        .append("svg")
+        .attr("id", "pgp-docs-contributors")
+        .attr("viewBox", [0, 0, outer_x, outer_y])
 
     const color = d3.schemeBlues[9];
 
@@ -60,7 +56,7 @@ const drawChart = async () => {
         .attr("width", size)
         .attr("height", size);
 
-    // color legend
+    // create color legend
     var max_count = Math.max.apply(Math, data.map(function (o) { return o.count; }))
 
     const legend_svg = d3.select('#viz-container')
